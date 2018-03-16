@@ -1,0 +1,30 @@
+.search-container {
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid #051b38;
+}
+
+.search-bar {
+	height: 35%;
+	width: 80%;
+	border-radius: 20px;
+	border: 1px solid #051b38;
+	text-indent: 30px;
+	margin-left: -16px;
+}
+
+.search-bar:hover,
+.search-bar:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.fa-search {
+	display: block;
+    position: relative;
+    color: #2B4970;
+    left: 7px;
+ }
+

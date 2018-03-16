@@ -1,0 +1,55 @@
+.stream-container {
+	display: flex;
+	flex-direction: row;
+	height: 70px;
+	padding: 2% 5%;
+}
+
+.avatar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 17%;
+	background: grey;
+	border-radius: 50%;
+	margin: 7.5px;
+}
+
+.fa-twitch {
+	color: #fff;
+}
+
+.desc {
+	width: 60%;
+	padding-left: 10px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	color: #051b38;
+}
+
+.name {
+	margin: 0;
+	font-size: 1em;
+}
+
+.title {
+	margin: 0;
+	font-size: .8em;
+	font-weight: normal;
+}
+
+.icon {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 20%;
+}
+
+.fa-check {
+	color: green;
+}
+
+.fa-times {
+	color: red;
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Search from './Search';
 import Stream from './Stream';
 
 class StreamList extends Component {
@@ -21,22 +22,56 @@ class StreamList extends Component {
           online: true,
           name: 'BreaK',
           title: 'mmmmmmmmmBreaK',
-        }
+        },
+        {
+          online: false,
+          name: 'BrutE',
+          title: 'mmmmmmmmmBrutE',
+        },
       ]
     }
+
+    this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  handleSearch() {
+    this.forceUpdate();
   }
 
 	render() {
-    const streamers = this.state.streamers.map((streamer) => (
-      <Stream 
-        online={streamer.online}
-        name={streamer.name}
-        title={streamer.title}
-      />
-    ));
+		let searchBar = document.getElementById('search-bar');
+		let streamers = [];
+
+		if(searchBar) {
+			streamers = this.state.streamers
+			// if the search bar has a value filter by it
+			.filter((stream) => (!stream.name.toLowerCase().indexOf(searchBar.value)))
+			// filter by all OR offline - online
+			.filter((stream) => (this.props.status === 'all' || stream.online === this.props.status))
+			.map((streamer, i) => (
+	      <Stream 
+	      	key={i}
+	        online={streamer.online}
+	        name={streamer.name}
+	        title={streamer.title}
+	      />
+    	));
+		} else {
+			streamers = this.state.streamers.map((streamer, i) => (
+	      <Stream 
+	      	key={i}
+	        online={streamer.online}
+	        name={streamer.name}
+	        title={streamer.title}
+	      />
+	    ));
+		}
 
     return (
     	<div>
+    		<Search 
+          onFormChange={this.handleSearch}
+        />
       	{streamers}
       </div>
     );

@@ -6,7 +6,7 @@
 	border-bottom: 1px solid #051b38;
 }
 
-.search-bar {
+#search-bar {
 	height: 35%;
 	width: 80%;
 	border-radius: 20px;
@@ -15,8 +15,8 @@
 	margin-left: -16px;
 }
 
-.search-bar:hover,
-.search-bar:focus {
+#search-bar:hover,
+#search-bar:focus {
     outline: none;
     box-shadow: none;
 }

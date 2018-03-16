@@ -6,7 +6,7 @@ class Search extends Component {
 		return(
 			<div className='search-container'>
 				<i className='fa fa-search'></i>
-				<input className="search-bar" type="text" placeholder="Search" />
+				<input id="search-bar" type="text" placeholder="Search" onChange={this.props.onFormChange}/>
 			</div>
 		);
 	}

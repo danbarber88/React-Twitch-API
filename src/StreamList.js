@@ -75,14 +75,15 @@ class StreamList extends Component {
     });
   }
 
+
 	render() {
 		let searchBar = document.getElementById('search-bar');
 		let streamers = [];
 
 		if(searchBar) {
 			streamers = this.state.streamers
-			// if the search bar has a value filter by it
-			.filter((streamer) => (!streamer.name.toLowerCase().indexOf(searchBar.value)))
+			// if the search bar has a value filter by it - filter out the names (lower case) not in the search bar
+			.filter((streamer) => (!streamer.name.toLowerCase().indexOf(searchBar.value.toLowerCase())))
 			// filter by all OR offline - online
 			.filter((streamer) => (this.state.status === 'all' || streamer.online === this.state.status))
 			.map((streamer, i) => (

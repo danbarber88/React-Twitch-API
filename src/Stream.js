@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Icon from './Icon';
 import './Stream.css';
 
 class Stream extends Component {
@@ -16,7 +15,7 @@ class Stream extends Component {
 					<h3 className='title'>{isOnline ? this.props.title : ''}</h3>
 				</div>
 				<div className='icon'>
-					<Icon online={this.props.online} />
+					{isOnline ? <i className='fas fa-check'></i> : <i className='fas fa-times'></i>}
 				</div>
 			</a>
 		);

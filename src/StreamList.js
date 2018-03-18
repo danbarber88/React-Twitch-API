@@ -19,7 +19,7 @@ class StreamList extends Component {
           title: 'Playing some game and taking too long about it',
         },
         {
-          online: false,
+          online: true,
           url: 'https://www.twitch.tv/sacriel',
           name: 'Sacriel',
           title: 'Well what actually happened was...',
@@ -37,7 +37,7 @@ class StreamList extends Component {
           title: 'mmmmmmmmmBrutE',
         },
         {
-          online: true,
+          online: false,
           url: '#',
           name: 'Dan',
           title: 'Piss Off!',

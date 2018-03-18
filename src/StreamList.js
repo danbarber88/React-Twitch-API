@@ -86,6 +86,7 @@ class StreamList extends Component {
 			.filter((streamer) => (!streamer.name.toLowerCase().indexOf(searchBar.value.toLowerCase())))
 			// filter by all OR offline - online
 			.filter((streamer) => (this.state.status === 'all' || streamer.online === this.state.status))
+      .sort((a, b) => (a.online + b.online))
 			.map((streamer, i) => (
 				<Stream 
 	      	key={i}
@@ -96,7 +97,9 @@ class StreamList extends Component {
 	      />
     	));
 		} else {
-			streamers = this.state.streamers.map((streamer, i) => (
+			streamers = this.state.streamers
+      .sort((a, b) => (a.online + b.online))
+      .map((streamer, i) => (
 	      <Stream 
 	      	key={i}
 	        online={streamer.online}

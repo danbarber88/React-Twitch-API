@@ -10,9 +10,10 @@ class StreamList extends Component {
     this.state = {
     	status: 'all',
       active: 'all',
+      searchValue: '',
       streamers: [
         {
-          online: false,
+          online: true,
           url: 'https://www.twitch.tv/CohhCarnage',
           name: 'CohhCarnage',
           title: 'Playing some game and taking too long about it',
@@ -50,8 +51,8 @@ class StreamList extends Component {
     this.offline = this.offline.bind(this);
   }
 
-  handleSearch() {
-    this.forceUpdate();
+  handleSearch(e) {
+    this.setState({searchValue: e.target.value})
   }
 
   all() {
@@ -75,40 +76,22 @@ class StreamList extends Component {
     });
   }
 
-
 	render() {
-		let searchBar = document.getElementById('search-bar');
-		let streamers = [];
-
-		if(searchBar) {
-			streamers = this.state.streamers
-			// if the search bar has a value filter by it - filter out the names (lower case) not in the search bar
-			.filter((streamer) => (!streamer.name.toLowerCase().indexOf(searchBar.value.toLowerCase())))
-			// filter by all OR offline - online
-			.filter((streamer) => (this.state.status === 'all' || streamer.online === this.state.status))
-      .sort((a, b) => (b.online - a.online))
-			.map((streamer, i) => (
-				<Stream 
-	      	key={i}
-	        online={streamer.online}
-	        url={streamer.url}
-	        name={streamer.name}
-	        title={streamer.title}
-	      />
-    	));
-		} else {
-			streamers = this.state.streamers
-      .sort((a, b) => (b.online - a.online))
-      .map((streamer, i) => (
-	      <Stream 
-	      	key={i}
-	        online={streamer.online}
-	        url={streamer.url}
-	        name={streamer.name}
-	        title={streamer.title}
-	      />
-	    ));
-		}
+		let streamers = this.state.streamers
+		// if the search bar has a value filter by it - filter out the names (lower case) not in the search bar
+		.filter((streamer) => (!streamer.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase())))
+		// filter by all OR offline - online
+		.filter((streamer) => (this.state.status === 'all' || streamer.online === this.state.status))
+    .sort((a, b) => (b.online - a.online))
+		.map((streamer, i) => (
+			<Stream 
+      	key={i}
+        online={streamer.online}
+        url={streamer.url}
+        name={streamer.name}
+        title={streamer.title}
+      />
+  	));
 
     return (
     	<div>

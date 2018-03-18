@@ -3,6 +3,12 @@
 	flex-direction: row;
 	height: 70px;
 	padding: 1% 5%;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.stream-container:hover {
+	background: #D5DDE7;
 }
 
 .avatar {

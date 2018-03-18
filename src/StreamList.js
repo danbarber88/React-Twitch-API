@@ -8,7 +8,7 @@ class StreamList extends Component {
     super(props)
 
     this.state = {
-    	status: 'all',
+    	onlineFilter: undefined,
       active: 'all',
       searchValue: '',
       streamers: [
@@ -57,21 +57,21 @@ class StreamList extends Component {
 
   all() {
     this.setState({
-      status: 'all',
+      onlineFilter: undefined,
       active: 'all',
     });
   }
 
   online() {
     this.setState({
-      status: true,
+      onlineFilter: true,
       active: 'online',
     });
   }
 
   offline() {
     this.setState({
-      status: false,
+      onlineFilter: false,
       active: 'offline',
     });
   }
@@ -81,7 +81,7 @@ class StreamList extends Component {
 		// if the search bar has a value filter by it - filter out the names (lower case) not in the search bar
 		.filter((streamer) => (!streamer.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase())))
 		// filter by all OR offline - online
-		.filter((streamer) => (this.state.status === 'all' || streamer.online === this.state.status))
+		.filter((streamer) => (this.state.onlineFilter === undefined || streamer.online === this.state.onlineFilter))
     .sort((a, b) => (b.online - a.online))
 		.map((streamer, i) => (
 			<Stream 

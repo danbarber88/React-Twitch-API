@@ -78,7 +78,7 @@ class StreamList extends Component {
 
 	render() {
 		let streamers = this.state.streamers
-		// if the search bar has a value filter by it - filter out the names (lower case) not in the search bar
+		// filter out the names (lower case) not in the search bar
 		.filter((streamer) => (!streamer.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase())))
 		// filter by all OR offline - online
 		.filter((streamer) => (this.state.onlineFilter === undefined || streamer.online === this.state.onlineFilter))

@@ -7,12 +7,12 @@ class Stream extends Component {
 
 		return(
 			<a href={this.props.url} className='stream-container' target='_blank'>
-				<div className='avatar'>
-					<i className='fab fa-twitch fa-2x'></i>
+				<div className='logo'>
+					{this.props.logo ? <img src={this.props.logo} /> : <i className='fab fa-twitch fa-2x'></i>}
 				</div>
 				<div className='desc'>
 					<h2 className='name'>{this.props.name}</h2>
-					<h3 className='title'>{isOnline ? this.props.title : ''}</h3>
+					<h3 className='playing'>{isOnline ? this.props.playing : ''}</h3>
 				</div>
 				<div className='icon'>
 					{isOnline ? <i className='fas fa-check'></i> : <i className='fas fa-times'></i>}

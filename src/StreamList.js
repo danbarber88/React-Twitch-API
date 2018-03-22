@@ -11,44 +11,66 @@ class StreamList extends Component {
     	onlineFilter: undefined,
       active: 'all',
       searchValue: '',
-      streamers: [
-        {
-          online: true,
-          url: 'https://www.twitch.tv/CohhCarnage',
-          name: 'CohhCarnage',
-          title: 'Playing some game and taking too long about it',
-        },
-        {
-          online: true,
-          url: 'https://www.twitch.tv/sacriel',
-          name: 'Sacriel',
-          title: 'Well what actually happened was...',
-        },
-        {
-          online: true,
-          url: 'https://www.twitch.tv/break',
-          name: 'BreaK',
-          title: 'mmmmmmmmmBreaK',
-        },
-        {
-          online: false,
-          url: '#',
-          name: 'BrutE',
-          title: 'mmmmmmmmmBrutE',
-        },
-        {
-          online: false,
-          url: '#',
-          name: 'Dan',
-          title: 'Piss Off!',
-        },
-      ]
+      streamersList: ["CohhCarnage", "Sacriel", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404", "ESL_SC2"],
+      streamersData: [],
     }
 
     this.handleSearch = this.handleSearch.bind(this);
     this.all = this.all.bind(this);
     this.online = this.online.bind(this);
     this.offline = this.offline.bind(this);
+  }
+
+  componentWillMount(){
+    this.streamerChannelData()
+  }
+
+  streamerChannelData(){
+    const url = "https://wind-bow.glitch.me/twitch-api/channels/";
+    let arr = [];
+    this.state.streamersList.forEach((streamer) => {
+      fetch(url + streamer)
+      .then((res) => (res.json()))
+      .then((res) => {
+        arr.push(
+          {
+            online: false,
+            logo: res.logo,
+            url: res.url,
+            name:  res.display_name,
+            playing: res.game,
+          }
+        )
+      })
+      .then(() => {
+        this.setState({
+          streamersData: arr,
+        })
+      })
+      .then(this.onlineCheck());
+    });
+  }
+
+  onlineCheck(){
+    const url = "https://wind-bow.glitch.me/twitch-api/streams/";
+    this.state.streamersList.forEach((streamer) => {
+      fetch(url + streamer)
+      .then((res) => (res.json()))
+      .then((res) => {
+        this.setState({
+          streamersData: this.state.streamersData.map((streamer) => {
+            if(res.stream && res.stream.channel.display_name === streamer.name){
+              return Object.assign({}, streamer, {
+                online: true,
+                playing: res.stream.game,
+              });
+            } else {
+              return streamer;
+            }
+          }),
+        })
+      })
+    });
   }
 
   handleSearch(e) {
@@ -77,19 +99,25 @@ class StreamList extends Component {
   }
 
 	render() {
-		let streamers = this.state.streamers
+		let streamers = this.state.streamersData
 		// filter out the names (lower case) not in the search bar
-		.filter((streamer) => (!streamer.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase())))
+		.filter((streamer) => {
+      if(streamer.name){
+        return !streamer.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase())
+      }
+    })
 		// filter by all OR offline - online
 		.filter((streamer) => (this.state.onlineFilter === undefined || streamer.online === this.state.onlineFilter))
-    .sort((a, b) => (b.online - a.online))
+    .sort((a, b) => (a.name.localeCompare(b.name))) // sort alphabetical
+    .sort((a, b) => (b.online - a.online)) // sort online first
 		.map((streamer, i) => (
 			<Stream 
       	key={i}
         online={streamer.online}
         url={streamer.url}
+        logo={streamer.logo}
         name={streamer.name}
-        title={streamer.title}
+        playing={streamer.playing}
       />
   	));
 

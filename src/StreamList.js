@@ -11,7 +11,7 @@ class StreamList extends Component {
     	onlineFilter: undefined,
       active: 'all',
       searchValue: '',
-      streamersList: ["CohhCarnage", "Sacriel", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404", "ESL_SC2"],
+      streamersList: ["CohhCarnage", "Sacriel", "break", "KingGothalion", "DansGaming", "itmeJP", "Day9tv", "Aculite", "GopherGaming", "Quill18", "LIRIK", "jhovgaard", "JackFrags"],
       streamersData: [],
     }
 

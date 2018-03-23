@@ -11,7 +11,7 @@ class StreamList extends Component {
     	onlineFilter: undefined,
       active: 'all',
       searchValue: '',
-      streamersList: ["CohhCarnage", "Sacriel", "break", "KingGothalion", "DansGaming", "itmeJP", "Day9tv", "Aculite", "GopherGaming", "Quill18", "LIRIK", "jhovgaard", "JackFrags"],
+      streamersList: ["CohhCarnage", "Sacriel", "break", "KingGothalion", "DansGaming", "itmeJP", "Day9tv", "Aculite", "Quill18", "LIRIK", "jhovgaard", "JackFrags"],
       streamersData: [],
     }
 
@@ -25,6 +25,12 @@ class StreamList extends Component {
     this.streamerChannelData()
   }
 
+ /*
+  *
+  * Use the twitch api to find all streamers in the streamerList state variable.
+  * Then build an array of objects and when finished set streamerData to that array.
+  *
+  */ 
   streamerChannelData(){
     const url = "https://wind-bow.glitch.me/twitch-api/channels/";
     let arr = [];
@@ -47,10 +53,11 @@ class StreamList extends Component {
           streamersData: arr,
         })
       })
-      .then(this.onlineCheck());
+      .then(this.onlineCheck())
     });
   }
 
+  // Loop over the streamer data, find online streamers and update their data.
   onlineCheck(){
     const url = "https://wind-bow.glitch.me/twitch-api/streams/";
     this.state.streamersList.forEach((streamer) => {
@@ -108,7 +115,6 @@ class StreamList extends Component {
     })
 		// filter by all OR offline - online
 		.filter((streamer) => (this.state.onlineFilter === undefined || streamer.online === this.state.onlineFilter))
-    .sort((a, b) => (a.name.localeCompare(b.name))) // sort alphabetical
     .sort((a, b) => (b.online - a.online)) // sort online first
 		.map((streamer, i) => (
 			<Stream 

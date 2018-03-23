@@ -64,3 +64,11 @@
 .fa-times {
 	color: red;
 }
+
+.offline .name {
+	color: rgba(5, 27 ,56 , .8);
+}
+
+.offline img {
+	filter: grayscale(80%) opacity(80%);
+}

@@ -6,7 +6,7 @@ class Stream extends Component {
 		const isOnline = this.props.online;
 
 		return(
-			<a href={this.props.url} className='stream-container' target='_blank'>
+			<a href={this.props.url} className={isOnline ? 'stream-container' : 'offline stream-container'} target='_blank'>
 				<div className='logo'>
 					{this.props.logo ? <img src={this.props.logo} /> : <i className='fab fa-twitch fa-2x'></i>}
 				</div>

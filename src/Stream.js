@@ -14,8 +14,9 @@ class Stream extends Component {
 					<h2 className='name'>{this.props.name}</h2>
 					<h3 className='playing'>{isOnline ? this.props.playing : ''}</h3>
 				</div>
-				<div className='icon'>
-					{isOnline ? <i className='fas fa-check'></i> : <i className='fas fa-times'></i>}
+				<div className='views'>
+					{isOnline ? <i class="fas fa-circle"></i> : ''}
+					{isOnline ? this.props.viewers : 'offline'}
 				</div>
 			</a>
 		);

@@ -15,7 +15,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 17%;
+	width: 20%;
 	background: #fff;
 	border-radius: 50%;
 	margin: 7.5px;
@@ -50,11 +50,14 @@
 	font-weight: normal;
 }
 
-.icon {
+.views {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	width: 10%;
+	width: 40%;
+	font-size: .8em;
+	font-weight: bold;
+	color: #051b38;
 }
 
 .fa-check {
@@ -63,6 +66,12 @@
 
 .fa-times {
 	color: red;
+}
+
+.fa-circle {
+	color: #ec1313;
+	font-size: .8em;
+	padding-right: 5px;
 }
 
 .offline .name {

@@ -45,6 +45,7 @@ class StreamList extends Component {
             url: res.url,
             name:  res.display_name,
             playing: res.game,
+            viewers: '',
           }
         )
       })
@@ -70,6 +71,7 @@ class StreamList extends Component {
               return Object.assign({}, streamer, {
                 online: true,
                 playing: res.stream.game,
+                viewers: res.stream.viewers,
               });
             } else {
               return streamer;
@@ -124,6 +126,7 @@ class StreamList extends Component {
         logo={streamer.logo}
         name={streamer.name}
         playing={streamer.playing}
+        viewers={streamer.viewers}
       />
   	));
 
